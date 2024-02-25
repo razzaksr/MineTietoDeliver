@@ -25,9 +25,18 @@ public class DemoComparatorWithDynamicOrder {
         Product product4=new Product("Puma",9845.2,40);
         ArrayList<Product> list= (ArrayList<Product>) Stream.of(product1,product2,product3,product4).collect(Collectors.toList());
 
-        String userChoice = getUserChoice();
-        ProductComparator comparator = new ProductComparator(userChoice);
-        Collections.sort(list, comparator);
-        System.out.println(list);
+//        String userChoice = getUserChoice();
+//        ProductComparator comparator = new ProductComparator(userChoice);
+//        Collections.sort(list, comparator);
+
+        // printing list
+        //System.out.println(list);
+        //list.forEach(System.out::println);// using method reference
+        //list.forEach(each-> System.out.println(each));// using lambda
+
+        //list.stream().map(v-> v.getPrice()<=10000).forEach(v-> System.out.println(v));
+
+        // filter based price and print
+        list.stream().filter(v->v.getPrice()<=5000).forEach(System.out::println);
     }
 }
