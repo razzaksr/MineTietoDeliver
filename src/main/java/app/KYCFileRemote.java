@@ -56,9 +56,17 @@ public class KYCFileRemote implements KYCRemote{
     @Override
     public void update(KYC kyc) {
         read();
-        int index=myMedium.indexOf(kyc);
-        if(index!=-1)
-            myMedium.set(index,kyc);
+//        int index=myMedium.indexOf(kyc);
+//        if(index!=-1)
+//            myMedium.set(index,kyc);
+        KYC kyc1=myMedium.stream().filter(each->each.getNumber()==kyc.getNumber()).findFirst().orElse(null);
+        if(kyc1!=null) {
+            int index=myMedium.indexOf(kyc1);
+            myMedium.set(index, kyc);
+            System.out.println(myMedium.get(index));
+        }
+        else
+            System.out.println("Invalid Number");
         write();
     }
 
